@@ -1,0 +1,22 @@
+@using Microsoft.AspNetCore.Identity
+@using Task4.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p class="d-inline me-3">@ViewData["UserEmail"]</p>
+    <form id="logoutForm" class="d-inline form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Admin", new {area = ""})">
+        <button id="logout" type="submit" class="btn btn-primary">Logout</button>
+    </form>
+}
+else
+{
+    <div class="btn-group">
+        <a class="btn btn-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="btn btn-primary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+    </div>
+}
